@@ -92,9 +92,9 @@ foreach ($provider in $provider_list) {
 }
 
 # Generate unique random suffix
-[string]$suffix =  -join ((48..57) + (97..122) | Get-Random -Count 7 | % {[char]$_})
-Write-Host "Your randomly-generated suffix for Azure resources is $suffix"
-$resourceGroupName = "dp203-$suffix"
+# [string]$suffix =  -join ((48..57) + (97..122) | Get-Random -Count 7 | % {[char]$_})
+# Write-Host "Your randomly-generated suffix for Azure resources is $suffix"
+$resourceGroupName = "msu"
 
 # Choose a random region
 Write-Host "Finding an available region. This may take several minutes...";
@@ -164,9 +164,6 @@ foreach ($provider in $provider_list) {
         Write-Host "Failed to register $provider after $max_retries attempts."
     }
 }
-
-Write-Host "Creating $resourceGroupName resource group in $Region ..."
-New-AzResourceGroup -Name $resourceGroupName -Location $Region | Out-Null
 
 # Create Synapse workspace
 $synapseWorkspace = "synapse$suffix"
